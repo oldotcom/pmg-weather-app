@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 import "./styles.css";
 
@@ -31,12 +31,13 @@ export default function App() {
     setTemp((temp) => res.current.temp_c);
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
-
   const handleChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const handleButtonClick = () => {
+    getData();
+    setValue((value) => "");
   };
 
   return (
@@ -56,7 +57,7 @@ export default function App() {
               }
             }}
           />
-          <button>search</button>
+          <button onClick={handleButtonClick}>search</button>
         </div>
 
         <div className="right-panel">
