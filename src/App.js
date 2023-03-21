@@ -7,13 +7,13 @@ export default function App() {
   const getResource = async (url) => {
     let res = await fetch(url);
 
-    // const errorMessage = () => {
-    //   alert("Enter correct location name, please ;)");
-    // };
+    const errorMessage = () => {
+      alert("Enter correct location name, please ;)");
+    };
 
-    // if (!res.ok) {
-    //   errorMessage();
-    // }
+    if (!res.ok) {
+      errorMessage();
+    }
 
     return await res.json();
   }
@@ -24,7 +24,7 @@ export default function App() {
 
   const getData = async () => {
     const _apiKey = "API_KEY";
-    const url = `https://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=london`;
+    const url = `https://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=${value}`;
     const res = await getResource(url);
 
     setlocation((location) => res.location.name);
@@ -39,6 +39,9 @@ export default function App() {
     getData();
     setValue((value) => "");
   };
+
+  const defaultValue = "Enter location, please";
+  const degree = " °C";
 
   return (
     <div className="App">
@@ -61,8 +64,11 @@ export default function App() {
         </div>
 
         <div className="right-panel">
-          <h1>City Name</h1>
-          <h2>Temperature in °C</h2>
+          <h1>{!location ? defaultValue : location}</h1>
+          <h2>
+            {!temp ? "" : temp}
+            {!temp ? "" : degree}
+          </h2>
         </div>
       </div>
     </div>
