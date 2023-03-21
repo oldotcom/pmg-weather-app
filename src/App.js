@@ -20,6 +20,7 @@ export default function App() {
 
   const [location, setlocation] = useState();
   const [temp, setTemp] = useState();
+  const [value, setValue] = useState("");
 
   const getData = async () => {
     const _apiKey = "API_KEY";
