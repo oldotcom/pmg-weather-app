@@ -1,0 +1,18 @@
+.App {
+    font-family: sans-serif;
+    text-align: center;
+  }
+  
+  .container {
+    display: flex;
+    min-height: 200px;
+  }
+  
+  .left-panel {
+    flex: 1;
+    border-right: 1px solid black;
+  }
+  
+  .right-panel {
+    flex: 1;
+  }  
