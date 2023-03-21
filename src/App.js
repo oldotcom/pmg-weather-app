@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 
 import "./styles.css";
 
@@ -16,6 +17,18 @@ export default function App() {
 
     return await res.json();
   }
+
+  const getData = async () => {
+    const _apiKey = "API_KEY";
+    const url = `https://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=london`;
+    const res = await getResource(url);
+
+    console.log(res);
+  };
+
+  useEffect(() => {
+    getData();
+  }, []);
 
   return (
     <div className="App">
