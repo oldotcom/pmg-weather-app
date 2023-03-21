@@ -34,12 +34,27 @@ export default function App() {
     getData();
   }, []);
 
+  const handleChange = (event) => {
+    setValue(event.target.value);
+  };
+
   return (
     <div className="App">
       <h1>PMG weather app</h1>
       <div className="container">
         <div className="left-panel">
-          <input id="search"></input>
+        <input
+            id="search"
+            type="text"
+            value={value}
+            onChange={handleChange}
+            placeholder="Enter location, please"
+            onKeyPress={(e) => {
+              if (e.key === "Enter") {
+                handleButtonClick();
+              }
+            }}
+          />
           <button>search</button>
         </div>
 
