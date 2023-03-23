@@ -16,8 +16,12 @@ export default function App() {
     const url = `${weatherService._apiBase}${_apiKey}${value}`;
     const res = await weatherService.getResource(url);
 
-    setlocation(res.location.name);
-    setTemp(res.current.temp_c);
+    try {
+      setlocation(res.location.name);
+      setTemp(res.current.temp_c);
+    } catch (error) {
+      return;
+    }
   };
 
   const handleChange = (event) => {
