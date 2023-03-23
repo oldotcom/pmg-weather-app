@@ -27,8 +27,8 @@ export default function App() {
     const url = `https://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=${value}`;
     const res = await getResource(url);
 
-    setlocation((location) => res.location.name);
-    setTemp((temp) => res.current.temp_c);
+    setlocation(res.location.name);
+    setTemp(res.current.temp_c);
   };
 
   const handleChange = (event) => {
@@ -48,18 +48,18 @@ export default function App() {
       <h1>PMG weather app</h1>
       <div className="container">
         <div className="left-panel">
-        <input
-            id="search"
-            type="text"
-            value={value}
-            onChange={handleChange}
-            placeholder="Enter location, please"
-            onKeyPress={(e) => {
-              if (e.key === "Enter") {
-                handleButtonClick();
-              }
-            }}
-          />
+          <input
+              id="search"
+              type="text"
+              value={value}
+              onChange={handleChange}
+              placeholder="Enter location, please"
+              onKeyPress={(e) => {
+                if (e.key === "Enter") {
+                  handleButtonClick();
+                }
+              }}
+            />
           <button onClick={handleButtonClick}>search</button>
         </div>
 
