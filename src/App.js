@@ -1,31 +1,20 @@
 import { useState } from "react";
+import WeatherService from "./WeatherService";
 
 import "./styles.css";
 
 export default function App() {
 
-  const getResource = async (url) => {
-    let res = await fetch(url);
+  const [location, setlocation] = useState('');
+  const [temp, setTemp] = useState('');
+  const [value, setValue] = useState('');
 
-    const errorMessage = () => {
-      alert("Enter correct location name, please ;)");
-    };
-
-    if (!res.ok) {
-      errorMessage();
-    }
-
-    return await res.json();
-  }
-
-  const [location, setlocation] = useState();
-  const [temp, setTemp] = useState();
-  const [value, setValue] = useState("");
+  const weatherService = new WeatherService();
 
   const getData = async () => {
-    const _apiKey = "API_KEY";
-    const url = `https://api.weatherapi.com/v1/current.json?key=${_apiKey}&q=${value}`;
-    const res = await getResource(url);
+    const _apiKey = weatherService._apiKey;
+    const url = `${weatherService._apiBase}${_apiKey}${value}`;
+    const res = await weatherService.getResource(url);
 
     setlocation(res.location.name);
     setTemp(res.current.temp_c);
